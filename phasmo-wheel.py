@@ -16,7 +16,7 @@ from os import listdir
 
 # The token and description of the bot.
 DEBUG = False
-TOKEN = 'OTkwMzAxODQ5OTQ3MDc4Njg2.GnnNvu.RESgbXQvKaxyDNnKrl1OIIutUHY92Awd-KgAV4'
+TOKEN = ''
 description = '''I am configured to randomly assign traits and banned items when asked.
 I respond to the commands !spin and !bonus. Good luck!'''
 

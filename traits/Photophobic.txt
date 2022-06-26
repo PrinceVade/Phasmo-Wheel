@@ -1,0 +1,3 @@
+This player doesn't like wasting electricity. The breaker has to be off at all times due to this player. If the ghost turns on the breaker, turn it off immediately!
+
+Conflict Items:

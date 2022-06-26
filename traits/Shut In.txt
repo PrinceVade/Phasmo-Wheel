@@ -1,0 +1,3 @@
+This player likes being inside. Once they've entered the building, they must stay inside until the ghost type has been found as well as completing the two needed objectives. Once found, they can leave.
+
+Conflict Items:

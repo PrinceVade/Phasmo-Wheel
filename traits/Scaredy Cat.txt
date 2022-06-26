@@ -1,0 +1,3 @@
+This player doesn't like to be alone at all when they're inside. They must always accompany someone else on the mission. If their companion dies, they must stay in place until another person comes out and gets them. If they're the last player alive on the mission, they must head straight back to the van guess the ghost, and leave.
+
+Conflict Items:

@@ -1,0 +1,3 @@
+This player must drop ALL their items every time a hunt begins if they're inside of the building. If the player is outside when a hunts begins, they do not have to drop their items. 
+
+Conflict Items:

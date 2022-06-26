@@ -1,0 +1,5 @@
+This player is obsessed with the cameras. They cannot use another other items besides the Photo or Video Cameras. They're also the only person who can check the Cams in the Van. All other players are banned from viewing the Monitor in the van even after the person with this trait dies!
+
+Conflict Items:
+Photo Camera
+Video Camera

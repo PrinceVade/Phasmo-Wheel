@@ -1,0 +1,3 @@
+This player must bring at least 3 plates found on the map back to the van once the ghost has been identified.
+
+Conflict Items:

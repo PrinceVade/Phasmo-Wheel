@@ -1,0 +1,3 @@
+This player must immediately leave the building and stay in the van until the end of the next hunt whenever they experience a Ghost Event
+
+Conflict Items:

@@ -1,0 +1,5 @@
+This player does not want to talk to the ghost. They are not allowed to talk to the ghost, say the ghost's name, any trigger words/phrases, or use the Spirit Box/Ouija Board/Parabolic Mic.
+
+Conflict Items:
+Spirit Box
+Parabolic Mic

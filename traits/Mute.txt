@@ -1,0 +1,3 @@
+This player cannot communicate using their voice. They must stay silent during the entire round.
+
+Conflict Items:

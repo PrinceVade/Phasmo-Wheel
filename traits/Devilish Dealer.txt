@@ -1,0 +1,3 @@
+This player's priority is to find the Tarot Cards. If they are found, they must pull all the cards until they get the "Devil" card. If the cards do not spawn, they need to experience a ghost event instead to pass.
+
+Conflict Items:

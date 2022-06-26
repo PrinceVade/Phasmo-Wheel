@@ -1,0 +1,6 @@
+This player enjoys the vast darkness. Any flashlights or UV light, cannot be used by this player. If the lights are on in this player's room, they must leave the room immediately and retreat to the dark.
+
+Conflict Items:
+Flashlight
+Strong Flashlight
+UV Light

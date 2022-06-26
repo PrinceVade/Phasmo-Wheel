@@ -1,0 +1,4 @@
+This player cannot be in the same room as any of the Cursed Items and must have the Crucifix on them at all times. If the ghost is found to be a Demon or if the Crucifix glows full red in the players hand, they must leave immediately and stay in the van for the rest of the mission.
+
+Conflict Items:
+Crucifix

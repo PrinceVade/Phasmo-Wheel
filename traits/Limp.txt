@@ -1,0 +1,3 @@
+This player has injured their legs from the last mission, therefore, they cannot sprint at all during the duration of the mission.
+
+Conflict Items:

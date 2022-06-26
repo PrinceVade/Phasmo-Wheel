@@ -1,0 +1,3 @@
+This player cannot communicate by their radio as it's malfunctioned for them. They can hear other players but cannot broadcast their own voice.
+
+Conflict Items:

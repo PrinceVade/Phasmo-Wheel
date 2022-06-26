@@ -1,0 +1,3 @@
+This player must always be yelling. Whether it's saying something to another player, or simply coaxing the ghost, they must always yell. 
+
+Conflict Items:

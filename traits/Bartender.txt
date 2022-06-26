@@ -1,0 +1,3 @@
+This player must bring at least 3 drinks (Bottles, Cans, or Cups) found on the map to the van once the ghost has been identified.
+
+Conflict Items:

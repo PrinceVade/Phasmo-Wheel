@@ -1,0 +1,3 @@
+This player enjoys the light. Any room this player is in has to have the lights on along with the breaker. If the breaker turns off with the lights on in the player's room. They must stand still until the lights come back on.
+
+Conflict Items:

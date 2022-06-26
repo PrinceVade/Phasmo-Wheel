@@ -1,0 +1,3 @@
+This player cannot hide in the same place more than once.
+
+Conflict Items:

@@ -1,0 +1,3 @@
+This player must only speak in questions. They cannot say any normal statements.
+
+Conflict Items:

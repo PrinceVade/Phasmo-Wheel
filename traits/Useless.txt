@@ -1,0 +1,3 @@
+This player cannot use any main evidence gathering equipment during the whole mission. Thermometer, Spirit Box, EMF Reader, UV Flashlight, Video Camera, Photo Camera, D.O.T.S. Projector. 
+
+Conflict Items:

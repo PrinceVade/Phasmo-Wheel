@@ -1,0 +1,3 @@
+This player just wants to hug the ghost. They must die by the ghost first. If they aren't the first one to die, they fail automatically.
+
+Conflict Items:

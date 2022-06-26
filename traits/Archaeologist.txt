@@ -1,0 +1,4 @@
+This player must find the bone as a priority. They cannot do anything until they take a successful picture of it and pick it up.
+
+Conflict Items:
+EMF Reader

@@ -1,0 +1,3 @@
+This player must get a successful answer from the Ouija Board if it spawns. If no Ouija Board is found, they can play the round normally but cannot die!
+
+Conflict Items:

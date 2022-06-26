@@ -1,0 +1,3 @@
+This player must run into the building with no items as soon as the truck door opens. in order to become useful and begin using items, they must experience a ghost event or hunt. 
+
+Conflict Items:

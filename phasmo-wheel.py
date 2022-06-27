@@ -119,6 +119,14 @@ async def punish(ctx):
     punishDict = getBonus('punishments')
     await ctx.send('```' + punishDict['name'] + ':\n' + punishDict['text'] + '```')
 
+@bot.command(name = 'rules',
+    description = 'Print the rules')
+async def rules(ctx):
+    with open('Rules.txt', 'r') as file:
+        text = [l.strip() for l in file.readlines()]
+
+    await ctx.send('```Rules:\n' + '\n'.join(text) + '```')
+
 @bot.command(name = 'give',
     description = 'debug command. Prints exact trait(+random item(s)) provided')
 async def give(ctx, trait: str):

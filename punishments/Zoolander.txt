@@ -1,0 +1,2 @@
+You cannot turn left in the next game.
+You may make 3 right turns or spin in place, however.

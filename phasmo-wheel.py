@@ -18,7 +18,7 @@ from os import listdir
 DEBUG = False
 TOKEN = ''
 description = '''I am configured to randomly assign traits and banned items when asked.
-I respond to the commands !spin and !bonus. Good luck!'''
+I respond to the commands !spin, !trait, !punish and !bonus. Good luck!'''
 
 # defining the bot's command prefix as well as adding the description.
 bot = commands.Bot(command_prefix='!', description=description)
@@ -53,6 +53,15 @@ def checkAddItems(itemList, traitDict):
         bannedItems += [getItem(itemList, traitDict['conflicts'])]
     
     return bannedItems
+
+def getBonus(folderName):
+    bonusList = listdir('./' + folderName)
+    bonus = random.choice(bonusList)
+    
+    with open('./' + folderName + '/' + bonus, 'r') as file:
+        bonusText = [l.strip() for l in file.readlines()]
+
+    return {'name': bonus.replace('.txt', ''), 'text': '\n'.join(bonusText)}
 
 async def printTrait(traitDict, ctx):
     await ctx.send('```' + traitDict['trait'] + ':\n' + '\n'.join(traitDict['text']) +'```')
@@ -91,10 +100,24 @@ async def spin(ctx):
     
     await printItems(bannedItems, ctx)
 
+@bot.command(name = 'trait',
+    description = 'Spin the trait wheel')
 async def trait(ctx):
     traits = listdir('./traits')
     traitDict = getTrait(traits)
     await printTrait(traitDict, ctx)
+
+@bot.command(name = 'bonus',
+    description = 'Spin the bonus wheel!')
+async def bonus(ctx):
+    bonusDict = getBonus('bonuses')
+    await ctx.send('```' + bonusDict['name'] + ':\n' + bonusDict['text'] + '```')
+    
+@bot.command(name = 'punish',
+    description = 'Spin the punishment wheel')
+async def punish(ctx):
+    punishDict = getBonus('punishments')
+    await ctx.send('```' + punishDict['name'] + ':\n' + punishDict['text'] + '```')
 
 @bot.command(name = 'give',
     description = 'debug command. Prints exact trait(+random item(s)) provided')

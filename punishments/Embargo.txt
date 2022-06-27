@@ -1,0 +1,1 @@
+Roll an item to be banned for everyone.

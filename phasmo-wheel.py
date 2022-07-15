@@ -9,23 +9,27 @@
 # Discord.py imports
 import discord
 from discord.ext import commands,tasks
+from discord.ext.commands import CommandNotFound
 
 # Python libraries
 import random
 from os import listdir
+from Levenshtein import distance
 
 # The token and description of the bot.
 DEBUG = False
-TOKEN = ''
+TOKEN = 'OTkwMzAxODQ5OTQ3MDc4Njg2.Gf8sYH.S1Gj0vMekMYovUhVZdJTc0okpfM3hmQkrt0e_w'
 description = '''I am configured to randomly assign traits and banned items when asked.
-I respond to the commands !spin, !trait, !punish and !bonus. Good luck!'''
+Make sure to read the !rules and use !help when needed. Good luck!'''
 
 # defining the bot's command prefix as well as adding the description.
-bot = commands.Bot(command_prefix='!', description=description)
+bot = commands.Bot(command_prefix='!', description=description, case_insensitive=True)
 
 def getTrait(traitList):
     conflictItems = []
     selectedTrait = random.choice(traitList)
+    if DEBUG:
+        print(selectedTrait)
     
     with open('./traits/' + selectedTrait, 'r') as file:
         traitText = [l.strip() for l in file.readlines()]
@@ -63,6 +67,24 @@ def getBonus(folderName):
 
     return {'name': bonus.replace('.txt', ''), 'text': '\n'.join(bonusText)}
 
+def getRandomFromList(ListOfChoices):
+    chosen = random.choice(ListOfChoices)
+    return chosen.replace('.txt', '')
+
+def findClosestCommand(given):
+    commands = ['spin', 'trait', 'item', 'bonus', 'punish', 'rules', 'map', 'diff', 'howhard', 'monika', 'newgame', 'start', 'fresh']
+    closest = commands[0]
+    closestDistance = distance(given, closest)
+    
+    for c in commands[1:]:
+        cLen = distance(given, c)
+    
+        if cLen < closestDistance:
+            closest = c
+            closestDistance = cLen
+
+    return closest
+
 async def printTrait(traitDict, ctx):
     await ctx.send('```' + traitDict['trait'] + ':\n' + '\n'.join(traitDict['text']) +'```')
 
@@ -99,6 +121,16 @@ async def spin(ctx):
     bannedItems += checkAddItems(items, traitDict)
     
     await printItems(bannedItems, ctx)
+
+@bot.command(name = 'item',
+    description = 'Spins the item wheel, excluding any conflict items from the given trait')
+async def item(ctx, traitName = ''):
+    conflicts = []
+    if traitName:
+        conflicts = getTrait([traitName + '.txt'])['conflicts']
+    
+    items = listdir('./items')
+    await printItems([getItem(items, conflicts)], ctx)
 
 @bot.command(name = 'trait',
     description = 'Spin the trait wheel')
@@ -140,6 +172,44 @@ async def give(ctx, trait: str):
         bannedItems += checkAddItems(items, traitDict)
         
         await printItems(bannedItems, ctx)
-    
+
+@bot.command(name = 'map',
+    description = 'Randomly chooses and prints a map choice.')
+async def map(ctx):
+    await ctx.send('Ghost detected at ' + getRandomFromList(listdir('./maps')))
+
+@bot.command(name = 'diff',
+    description = 'Randomly chooses and prints a difficulty choice.',
+    aliases = ['difficulty', 'howhard', 'monika'])
+async def diff(ctx):
+    await ctx.send('Danger levels reading at ' + getRandomFromList(listdir('./difficulties')))
+
+@bot.command(name = 'newgame',
+    description = 'Sets up a new game and prints a map and difficulty.',
+    aliases = ['fresh', 'start'])
+async def newgame(ctx):
+    await ctx.send('```Ghost detected at ' + getRandomFromList(listdir('./maps')) + '\nDanger levels reading at ' + getRandomFromList(listdir('./difficulties')) + '```')
+
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, CommandNotFound):
+        print(error)
+        
+        textOptions = [
+            "*sigh* Zack, let's stick to commands that actually exist, shall we?",
+            "Oops, you probably pulled a Zack!",
+            "3Drunk5Phasmo. Try again, pl0x.",
+            "Error 404, " + ctx.message.content[1:] + " not Found. ",
+            "Zachariah Wayne Dreitzler, you get your act together this instant!",
+            "Is Bames Nond having a stronk?",
+            "The Zack is strong with this one...",
+            "01100100 01110101 01101101 01100010 01100001 01110011 01110011",
+            "Chaos is your friend, it seems. I'm just assuming you're doing this on purpose.",
+            "*facepalm*",
+            "I think I know what you mean:",
+            "I'm too tried for this shit."
+        ]
+        
+        await ctx.send(getRandomFromList(textOptions) + "\nYou were trying to run " + findClosestCommand(ctx.message.content[1:].lower()) + " right?")
 
 bot.run(TOKEN)

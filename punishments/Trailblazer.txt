@@ -1,0 +1,1 @@
+You must be the first person to enter the building every time. Anytime someone else is inside the building you must be inside as well.

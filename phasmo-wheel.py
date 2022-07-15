@@ -18,7 +18,7 @@ from Levenshtein import distance
 
 # The token and description of the bot.
 DEBUG = False
-TOKEN = 'OTkwMzAxODQ5OTQ3MDc4Njg2.Gf8sYH.S1Gj0vMekMYovUhVZdJTc0okpfM3hmQkrt0e_w'
+TOKEN = ''
 description = '''I am configured to randomly assign traits and banned items when asked.
 Make sure to read the !rules and use !help when needed. Good luck!'''
 

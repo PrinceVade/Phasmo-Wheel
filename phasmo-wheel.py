@@ -140,13 +140,15 @@ async def trait(ctx):
     await printTrait(traitDict, ctx)
 
 @bot.command(name = 'bonus',
-    description = 'Spin the bonus wheel!')
+    description = 'Spin the bonus wheel!',
+    aliases = ['good'])
 async def bonus(ctx):
     bonusDict = getBonus('bonuses')
     await ctx.send('```' + bonusDict['name'] + ':\n' + bonusDict['text'] + '```')
     
 @bot.command(name = 'punish',
-    description = 'Spin the punishment wheel')
+    description = 'Spin the punishment wheel',
+    aliases = ['punishment', 'bad'])
 async def punish(ctx):
     punishDict = getBonus('punishments')
     await ctx.send('```' + punishDict['name'] + ':\n' + punishDict['text'] + '```')
@@ -172,6 +174,16 @@ async def give(ctx, trait: str):
         bannedItems += checkAddItems(items, traitDict)
         
         await printItems(bannedItems, ctx)
+
+@bot.command(name = 'list',
+    description = 'Lists all of the items specified in the command (should be plural)')
+async def list(ctx, query: str):
+    try:
+        dirList = listdir('./' + query.lower())
+        trimmedList = [i.replace('.txt', '') for i in dirList]
+        await ctx.send("Found a total of " + str(len(trimmedList)) + " " + query + ":```" + '\n'.join(trimmedList) + "```\nYou can find all details here `https://github.com/PrinceVade/Phasmo-Wheel`")
+    except:
+        await ctx.send("Couldn't find anything called " + query + ". Try again (make sure it's plural) or contact the dev.")
 
 @bot.command(name = 'map',
     description = 'Randomly chooses and prints a map choice.')

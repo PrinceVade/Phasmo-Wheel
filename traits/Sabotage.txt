@@ -1,3 +1,4 @@
-This player must find the Cursed Item that spawns on the map. Once found, they must use it in its entirety until the item breaks or is used up. Only until this happens, they can help identify the ghost. 
+This player must find the Cursed Item that spawns on the map. Once found, they must use it in its entirety until the item breaks or is used up. Only until this happens, they can help identify the ghost.
 
 Conflict Items:
+Cursed Object

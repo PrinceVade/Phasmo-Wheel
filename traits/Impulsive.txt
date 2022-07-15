@@ -1,3 +1,0 @@
-This player gets scared easily... When they experience a Ghost Event, they must drop what ever item is in their hand out of fear. Thanks to this, the item is now "broken" and can't be used anymore by anyone in the round.
-
-Conflict Items:

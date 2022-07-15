@@ -2,3 +2,4 @@ This player cannot be in the same room as any of the Cursed Items and must have 
 
 Conflict Items:
 Crucifix
+Cursed Object

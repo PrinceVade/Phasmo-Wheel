@@ -1,0 +1,3 @@
+This player gets dizzy when changing floors - they must pick a floor before entering the building and stick to that floor. They can move to the van and back, but cannot stop to hide, drop items, gather evidence, etc.
+
+Conflict Items:

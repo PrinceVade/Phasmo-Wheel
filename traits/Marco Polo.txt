@@ -1,3 +1,5 @@
-This player must randomly yell out, "Marco" with all other players REQUIRED to respond, "Polo." The goal of this player is to get one of their teammates killed to pass. If they die, they fail the trait.
+This player must randomly yell out, "Marco" with all other players REQUIRED to respond, "Polo." The goal of this player is to get one of their teammates killed to pass.
+Complete Condition: Get one of your teammates killed by calling out "Polo."
+Extra: If at any point this player dies, !punish.
 
 Conflict Items:

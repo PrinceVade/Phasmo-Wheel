@@ -1,3 +1,5 @@
-This player's priority is to find the Tarot Cards. If they are found, they must pull all the cards until they get the "Devil" card. If the cards do not spawn, they need to experience a ghost event instead to pass.
+This player's priority is to find the Tarot Cards. If they are found, they must pull all the cards until they get the "Devil" card. If the cards do not spawn, they need to survive 2 hunts to pass.
+Complete Condition: Find the Tarot cards and get the "Devil" or survive 2 hunts.
 
 Conflict Items:
+Cursed Object

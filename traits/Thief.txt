@@ -1,3 +1,4 @@
 This player must collect at least 3 framed pictures or electronics on the map and take them back to the van. Got to make more money somehow right?
+Complete Condition: 3 framed pictures or electronics are in the van upon leaving.
 
 Conflict Items:

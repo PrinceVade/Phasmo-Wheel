@@ -1,0 +1,4 @@
+This player maliciously wants the party to fail. They must lie and do whatever it takes to get the group to misidentify the ghost.
+Complete Condition: The ghost is guessed incorrectly and at least 1 evidence is wrong based on your malicious intent.
+
+Conflict Items:

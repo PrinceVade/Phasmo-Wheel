@@ -1,0 +1,5 @@
+At any point in the round, this player must find a hiding spot in the house and concel themselves there. Without instructing the others to find them, they must be found by a living player without the help of the dead.
+Complete Condition: A player dies while searching for you - or finds you during a hunt.
+Extra: If all players die searching for you, take home an extra !bonus
+
+Conflict Items:

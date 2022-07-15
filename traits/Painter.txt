@@ -1,3 +1,4 @@
-This player enjoys painting. For this reason, they must grab as many paint cans as possible and bring them back to the van and take them home. 
+This player enjoys painting. For this reason, they must grab as many paint cans as possible and bring them back to the van and take them home.
+Extra: If this player retrieves ALL paint cans on the map (confirmed by a teammate) !bonus
 
 Conflict Items:

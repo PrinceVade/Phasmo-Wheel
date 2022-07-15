@@ -1,0 +1,5 @@
+This player must get a successful answer from the Ouija Board if it spawns. If no Ouija Board is found, they can play the round normally but cannot die!
+Complete Condition: Get a successful answer from the Ouija board or do not die.
+
+Conflict Items:
+Cursed Object

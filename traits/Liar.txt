@@ -1,3 +1,4 @@
-This player must spin the wheel again and must perform the trait given. However, they cannot tell the others what the trait is. All other players must guess what trait this person was given at the end of the round. If they guess correctly, the player fails the trait.
+This player must spin the wheel again and must perform the trait given. However, they cannot tell the others what the trait is. All other players must guess what trait this person was given at the end of the round.
+Complete Condition: Nobody guesses your second trait.
 
 Conflict Items:

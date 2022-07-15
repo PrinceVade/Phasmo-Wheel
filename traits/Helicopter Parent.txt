@@ -1,0 +1,5 @@
+This player rolls a D3 to choose who test their parenting skills on. They must ensure their child is safe and well-hydrated during the round. They cannot leave their child's side.
+Compelte Condition: The round ends with child alive.
+Extra: If you sacrifice yourself for your child get a !bonus.
+
+Conflict Items:

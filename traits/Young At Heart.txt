@@ -1,3 +1,4 @@
 This player must rescue at least 2 stuffed toys found inside and bring them back out to the van. THE VOODOO DOLL DOES NOT COUNT!
+Complete Condition: 2 stuffed toys are in the van upon leaving.
 
 Conflict Items:

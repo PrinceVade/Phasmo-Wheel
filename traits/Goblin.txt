@@ -1,5 +1,6 @@
 This player LOVES shinies. Anytime another player drops an item, they must attempt to steal it and take it to their hiding place. They cannot use the hidden items. Don't tell anyone where your stash is!
-At the end of the round, the player must have 3 hidden items in order to win.
+Complete Condition: 3 items are hidden in 1 place upon leaving.
+Extra: If another player finds your stash at any point, you must !punish yourself.
 
 Banned items do not apply to hiding items.
 Conflict Items:

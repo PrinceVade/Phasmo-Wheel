@@ -1,4 +1,4 @@
-This player must have the Parabolic Microphone in their inventory at ALL TIMES
+This player must have the Parabolic Microphone in their inventory at ALL TIMES.
 
 Conflict Items:
 Parabolic Microphone

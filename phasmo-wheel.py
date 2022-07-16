@@ -22,6 +22,11 @@ TOKEN = ''
 description = '''I am configured to randomly assign traits and banned items when asked.
 Make sure to read the !rules and use !help when needed. Good luck!'''
 
+# a global variable to help track election status
+activeElection = False
+activeElectionVotesNeeded = 0
+votes = {}
+
 # defining the bot's command prefix as well as adding the description.
 bot = commands.Bot(command_prefix='!', description=description, case_insensitive=True)
 
@@ -177,7 +182,7 @@ async def give(ctx, trait: str):
 
 @bot.command(name = 'list',
     description = 'Lists all of the items specified in the command (should be plural)')
-async def list(ctx, query: str):
+async def printList(ctx, query: str):
     try:
         dirList = listdir('./' + query.lower())
         trimmedList = [i.replace('.txt', '') for i in dirList]
@@ -198,9 +203,56 @@ async def diff(ctx):
 
 @bot.command(name = 'newgame',
     description = 'Sets up a new game and prints a map and difficulty.',
-    aliases = ['fresh', 'start'])
+    aliases = ['fresh', 'start', 'new'])
 async def newgame(ctx):
     await ctx.send('```Ghost detected at ' + getRandomFromList(listdir('./maps')) + '\nDanger levels reading at ' + getRandomFromList(listdir('./difficulties')) + '```')
+
+@bot.command(name = 'vote',
+    description = 'Cast a vote in the currently running election.')
+async def vote(ctx, ballot: str):
+    global activeElection
+    global votes
+    global activeElectionVotesNeeded
+    
+    if activeElection:
+        if (len(votes) >= activeElectionVotesNeeded):
+            # vote is invalid, election is over.
+            await ctx.send("Oop! Election is already over. Please see the results:")
+            await ctx.invoke(bot.get_command('election'), nominees = '1')
+        elif str(ctx.message.author.id) in votes.keys():
+            await ctx.send("You've already voted: No committing voter fraud! Silly goose.")
+        else:
+            votes[str(ctx.message.author.id)] = ballot.lower()
+            await ctx.send('Thank you for your vote!')
+    else:
+        await ctx.send('There is no active election, please run !election before voting.')
+
+@bot.command(name = 'election',
+    description = 'Begins the election process.')
+async def election(ctx, nominees = '4'):
+    global activeElection
+    global votes
+    global activeElectionVotesNeeded
+    
+    if activeElection:
+        if (len(votes) >= activeElectionVotesNeeded) or (nominees.lower() == 'cancel'):
+            # this means that the election is over.
+            activeElection = False
+            peopleThatMatter = set(votes.values())
+            results = {p: list(votes.values()).count(p) for p in peopleThatMatter}
+            
+            formattedResults = "```"
+            for person in results.keys():
+                formattedResults += person + ': ' + str(results[person]) + '\n'
+
+            await ctx.send('Election results:' + formattedResults + '```')
+        else:
+            await ctx.send("There's already an active election in progress. Currently " + str(len(votes)) + "/" + str(activeElectionVotesNeeded) + " votes cast.")
+    else:
+        activeElection = True
+        votes = {}
+        activeElectionVotesNeeded = int(nominees)
+        await ctx.send("A new election has begun! Cast votes via DM.")
 
 @bot.event
 async def on_command_error(ctx, error):

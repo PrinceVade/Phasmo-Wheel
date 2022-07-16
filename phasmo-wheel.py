@@ -12,9 +12,11 @@ from discord.ext import commands,tasks
 from discord.ext.commands import CommandNotFound
 
 # Python libraries
+import logging
 import random
 from os import listdir
 from Levenshtein import distance
+from datetime import datetime as dt
 
 # The token and description of the bot.
 DEBUG = False
@@ -22,6 +24,10 @@ TOKEN = ''
 description = '''I am configured to randomly assign traits and banned items when asked.
 Make sure to read the !rules and use !help when needed. Good luck!'''
 
+# quick log configuration
+logLevel = logging.DEBUG if DEBUG else logging.INFO
+logging.basicConfig(filename='./logs/' + dt.now().strftime('%m%d%Y-%H%M') + '.log', encoding='utf-8', level=logLevel)
+    
 # a global variable to help track election status
 activeElection = False
 activeElectionVotesNeeded = 0
@@ -47,7 +53,6 @@ def getTrait(traitList):
     return {'trait': selectedTrait.replace('.txt', ''), 'text': traitText, 'conflicts': conflictItems}
 
 def getItem(itemList, conflictList):
-    print(conflictList)
     items = [i for i in itemList if i not in conflictList]
     return random.choice(items)
 
@@ -55,7 +60,7 @@ def checkAddTraits(traitDict):
     # do nothing for now, still braintstorm wtf to do here
     return false
 
-def checkAddItems(itemList, traitDict, alreadyBanned):
+def checkAddItems(itemList, traitDict, alreadyBanned = []):
     bannedItems = []
     if traitDict['trait'] == 'Forgetful':
         # spin two more banned items
@@ -124,7 +129,7 @@ async def spin(ctx):
         await printTrait(extraTrait, ctx)
 
     bannedItems = [getItem(items, traitDict['conflicts'])]
-    bannedItems += checkAddItems(items, traitDict)
+    bannedItems += checkAddItems(items, traitDict, bannedItems)
     
     await printItems(bannedItems, ctx)
 
@@ -172,12 +177,17 @@ async def rules(ctx):
 async def give(ctx, trait: str):
     if DEBUG:
         traitDict = getTrait([trait + '.txt'])
+        logging.debug(traitDict)
+        print(traitDict)
+        
         items = listdir('./items')
         
         await printTrait(traitDict, ctx)
         
         bannedItems = [getItem(items, traitDict['conflicts'])]
         bannedItems += checkAddItems(items, traitDict, bannedItems)
+        logging.debug(bannedItems)
+        print(bannedItems)
         
         await printItems(bannedItems, ctx)
 
@@ -218,11 +228,12 @@ async def vote(ctx, ballot: str):
     if activeElection:
         if (len(votes) >= activeElectionVotesNeeded):
             # vote is invalid, election is over.
-            await ctx.send("Oop! Election is already over. Please see the results:")
-            await ctx.invoke(bot.get_command('election'), nominees = '1')
+            await ctx.send("Oop! Election is already over. Please use !election to see the results.")
         elif str(ctx.message.author.id) in votes.keys():
+            logging.info('Duplicate vote cast by ' + str(ctx.message.auther.name) + '. Vote was: ' + ballot)
             await ctx.send("You've already voted: No committing voter fraud! Silly goose.")
         else:
+            logging.info('Vote in election cast by ' + str(ctx.message.auther.name) + '. Vote was: ' + ballot)
             votes[str(ctx.message.author.id)] = ballot.lower()
             await ctx.send('Thank you for your vote!')
     else:
@@ -238,6 +249,8 @@ async def election(ctx, nominees = '4'):
     if activeElection:
         if (len(votes) >= activeElectionVotesNeeded) or (nominees.lower() == 'cancel'):
             # this means that the election is over.
+            logging.info('Election finished. Logging results: ' + str(votes))
+            
             activeElection = False
             peopleThatMatter = set(votes.values())
             results = {p: list(votes.values()).count(p) for p in peopleThatMatter}
@@ -248,18 +261,32 @@ async def election(ctx, nominees = '4'):
 
             await ctx.send('Election results:' + formattedResults + '```')
         else:
+            logging.info("Additional election command run. Value of: (len(votes) >= activeElectionVotesNeeded) or (nominees.lower() == 'cancel')\n`(len(" + str(votes) + ") >= " + str(activeElectionVotesNeeded) + ") or (" + nominees + ".lower() == 'cancel'`"
             await ctx.send("There's already an active election in progress. Currently " + str(len(votes)) + "/" + str(activeElectionVotesNeeded) + " votes cast.")
     else:
+        logging.info('Election begun. ' + nominees + ' needed to complete.')
         activeElection = True
         votes = {}
         activeElectionVotesNeeded = int(nominees)
         await ctx.send("A new election has begun! Cast votes via DM.")
 
 @bot.event
+async def on_command(ctx):
+    logging.info(ctx.command.name + ' called with arguments ' + str(ctx.kwargs))
+
+@bot.event
+async def on_command_completion(ctx):
+    suffix = 'successfully.'
+    if ctx.command_failed:
+        suffix = 'unsuccessfully.'
+
+    logging.info(ctx.command.name + ' completed ' + suffix)
+
+@bot.event
 async def on_command_error(ctx, error):
+    logging.error('CommandError detected: ' + str(error))
+
     if isinstance(error, CommandNotFound):
-        print(error)
-        
         textOptions = [
             "*sigh* Zack, let's stick to commands that actually exist, shall we?",
             "Oops, you probably pulled a Zack!",

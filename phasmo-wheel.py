@@ -47,6 +47,7 @@ def getTrait(traitList):
     return {'trait': selectedTrait.replace('.txt', ''), 'text': traitText, 'conflicts': conflictItems}
 
 def getItem(itemList, conflictList):
+    print(conflictList)
     items = [i for i in itemList if i not in conflictList]
     return random.choice(items)
 
@@ -54,12 +55,12 @@ def checkAddTraits(traitDict):
     # do nothing for now, still braintstorm wtf to do here
     return false
 
-def checkAddItems(itemList, traitDict):
+def checkAddItems(itemList, traitDict, alreadyBanned):
     bannedItems = []
     if traitDict['trait'] == 'Forgetful':
         # spin two more banned items
-        bannedItems += [getItem(itemList, traitDict['conflicts'])]
-        bannedItems += [getItem(itemList, traitDict['conflicts'])]
+        bannedItems += [getItem(itemList, alreadyBanned + bannedItems)]
+        bannedItems += [getItem(itemList, alreadyBanned + bannedItems)]
     
     return bannedItems
 
@@ -176,7 +177,7 @@ async def give(ctx, trait: str):
         await printTrait(traitDict, ctx)
         
         bannedItems = [getItem(items, traitDict['conflicts'])]
-        bannedItems += checkAddItems(items, traitDict)
+        bannedItems += checkAddItems(items, traitDict, bannedItems)
         
         await printItems(bannedItems, ctx)
 

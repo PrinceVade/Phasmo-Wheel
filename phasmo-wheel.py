@@ -20,7 +20,7 @@ from datetime import datetime as dt
 
 # The token and description of the bot.
 DEBUG = False
-TOKEN = ' '
+TOKEN = ''
 description = '''I am the Phasmo-Bot! Designed to make Phasmophobia a more terrible and amazing experience!
 It is optimal to use this bot once your party has either achieved level 30 or is considered profient at hunting ghosts.
 You can play otherwise, but there will be quite a lot of !punish going on.
@@ -196,7 +196,8 @@ async def printList(ctx, query: str):
     try:
         dirList = listdir('./' + query.lower())
         trimmedList = [i.replace('.txt', '') for i in dirList]
-        await ctx.send("Found a total of " + str(len(trimmedList)) + " " + query + ":```" + '\n'.join(trimmedList) + "```\nYou can find all details here `https://github.com/PrinceVade/Phasmo-Wheel`")
+        print(trimmedList)
+        await ctx.send("Found a total of " + str(len(trimmedList)) + " " + query + ":```\n" + '\n'.join(trimmedList) + "```\nYou can find all details here `https://github.com/PrinceVade/Phasmo-Wheel`")
     except:
         await ctx.send("Couldn't find anything called " + query + ". Try again (make sure it's plural) or contact the dev.")
 
@@ -281,10 +282,13 @@ async def election(ctx, nominees = '4', fraud = False):
 @bot.command(name = 'rules',
     description = 'Print the rules for a given gamemode.')
 async def rules(ctx, mode: str):
-    with open('./modes/' + mode.lower()  + '.txt', 'r') as file:
-        modeRules = [l.strip() for l in file.readlines()]
+    try:
+        with open('./modes/' + mode  + '.txt', 'r') as file:
+            modeRules = [l.strip() for l in file.readlines()]
     
-    await ctx.send('```' + mode +  ' Rules:\n' + '\n'.join(modeRules) + '```')
+        await ctx.send('```' + mode +  ' Rules:\n' + '\n'.join(modeRules) + '```')
+    except:
+        await ctx.send('I could not find a mode called ' + mode + '. Check the spelling with "!list modes". Or contact your admin.'
 
 @bot.event
 async def on_command(ctx):

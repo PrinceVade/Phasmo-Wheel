@@ -230,10 +230,10 @@ async def vote(ctx, ballot: str):
             # vote is invalid, election is over.
             await ctx.send("Oop! Election is already over. Please use !election to see the results.")
         elif str(ctx.message.author.id) in votes.keys():
-            logging.info('Duplicate vote cast by ' + str(ctx.message.auther.name) + '. Vote was: ' + ballot)
+            logging.info('Duplicate vote cast by ' + str(ctx.message.author.name) + '. Vote was: ' + ballot)
             await ctx.send("You've already voted: No committing voter fraud! Silly goose.")
         else:
-            logging.info('Vote in election cast by ' + str(ctx.message.auther.name) + '. Vote was: ' + ballot)
+            logging.info('Vote in election cast by ' + str(ctx.message.author.name) + '. Vote was: ' + ballot)
             votes[str(ctx.message.author.id)] = ballot.lower()
             await ctx.send('Thank you for your vote!')
     else:
@@ -261,7 +261,7 @@ async def election(ctx, nominees = '4'):
 
             await ctx.send('Election results:' + formattedResults + '```')
         else:
-            logging.info("Additional election command run. Value of: (len(votes) >= activeElectionVotesNeeded) or (nominees.lower() == 'cancel')\n`(len(" + str(votes) + ") >= " + str(activeElectionVotesNeeded) + ") or (" + nominees + ".lower() == 'cancel'`")
+            logging.info("Additional election command run. Value of: (len(votes) >= activeElectionVotesNeeded) or (nominees.lower() == 'cancel')\n`(len(" + str(votes) + ") >= " + str(activeElectionVotesNeeded) + ") or (" + nominees + ".lower() == 'cancel')`")
             await ctx.send("There's already an active election in progress. Currently " + str(len(votes)) + "/" + str(activeElectionVotesNeeded) + " votes cast.")
     else:
         logging.info('Election begun. ' + nominees + ' needed to complete.')

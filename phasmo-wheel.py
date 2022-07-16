@@ -20,9 +20,15 @@ from datetime import datetime as dt
 
 # The token and description of the bot.
 DEBUG = False
-TOKEN = ''
-description = '''I am configured to randomly assign traits and banned items when asked.
-Make sure to read the !rules and use !help when needed. Good luck!'''
+TOKEN = 'OTkwMzAxODQ5OTQ3MDc4Njg2.G3gI8b.GPntmBePEyYeeWcZcbSYPFXXfoA_g9yEkJTPU8'
+description = '''I am the Phasmo-Bot! Designed to make Phasmophobia a more terrible and amazing experience!
+It is optimal to use this bot once your party has either achieved level 30 or is considered profient at hunting ghosts.
+You can play otherwise, but there will be quite a lot of !punish going on.
+
+To use, you should have a channel dedicated to Phasmophobia where everyone playing can see messages.
+There, use the !newgame command in order to print a random map, gamemode, and difficulty.
+If you are unfamiliar with the gamemode presented, use the "!rules <gamemode>" commands to print the rules.
+Follow the instructions and have fun. Good luck!'''
 
 # quick log configuration
 logLevel = logging.DEBUG if DEBUG else logging.INFO
@@ -30,6 +36,7 @@ logging.basicConfig(filename='./logs/' + dt.now().strftime('%m%d%Y-%H%M') + '.lo
     
 # a global variable to help track election status
 activeElection = False
+activeElectionFraud = False
 activeElectionVotesNeeded = 0
 votes = {}
 
@@ -164,14 +171,6 @@ async def punish(ctx):
     punishDict = getBonus('punishments')
     await ctx.send('```' + punishDict['name'] + ':\n' + punishDict['text'] + '```')
 
-@bot.command(name = 'rules',
-    description = 'Print the rules')
-async def rules(ctx):
-    with open('Rules.txt', 'r') as file:
-        text = [l.strip() for l in file.readlines()]
-
-    await ctx.send('```Rules:\n' + '\n'.join(text) + '```')
-
 @bot.command(name = 'give',
     description = 'debug command. Prints exact trait(+random item(s)) provided')
 async def give(ctx, trait: str):
@@ -212,24 +211,31 @@ async def map(ctx):
 async def diff(ctx):
     await ctx.send('Danger levels reading at ' + getRandomFromList(listdir('./difficulties')))
 
+@bot.command(name = 'mode',
+    description = 'Randomly chooses and prints a game mode to play.',
+    aliases = ['gamemode'])
+async def gamemode(ctx):
+    await ctx.send('Gamemode adjusted to ' + getRandomFromList(listdir('./modes')))
+
 @bot.command(name = 'newgame',
     description = 'Sets up a new game and prints a map and difficulty.',
     aliases = ['fresh', 'start', 'new'])
 async def newgame(ctx):
-    await ctx.send('```Ghost detected at ' + getRandomFromList(listdir('./maps')) + '\nDanger levels reading at ' + getRandomFromList(listdir('./difficulties')) + '```')
+    await ctx.send('```Ghost detected at ' + getRandomFromList(listdir('./maps')) + '\nDanger levels reading at ' + getRandomFromList(listdir('./difficulties')) + '\nGamemode adjusted to ' + getRandomFromList(listdir('./modes')) + '```')
 
 @bot.command(name = 'vote',
     description = 'Cast a vote in the currently running election.')
 async def vote(ctx, ballot: str):
     global activeElection
     global votes
+    global activeElectionFraud
     global activeElectionVotesNeeded
     
     if activeElection:
         if (len(votes) >= activeElectionVotesNeeded):
             # vote is invalid, election is over.
             await ctx.send("Oop! Election is already over. Please use !election to see the results.")
-        elif str(ctx.message.author.id) in votes.keys():
+        elif (str(ctx.message.author.id) in votes.keys()) and (not activeElectionFraud):
             logging.info('Duplicate vote cast by ' + str(ctx.message.author.name) + '. Vote was: ' + ballot)
             await ctx.send("You've already voted: No committing voter fraud! Silly goose.")
         else:
@@ -241,9 +247,10 @@ async def vote(ctx, ballot: str):
 
 @bot.command(name = 'election',
     description = 'Begins the election process.')
-async def election(ctx, nominees = '4'):
+async def election(ctx, nominees = '4', fraud = False):
     global activeElection
     global votes
+    global activeElectionFraud
     global activeElectionVotesNeeded
     
     if activeElection:
@@ -267,8 +274,17 @@ async def election(ctx, nominees = '4'):
         logging.info('Election begun. ' + nominees + ' needed to complete.')
         activeElection = True
         votes = {}
+        activeElectionFraud = fraud
         activeElectionVotesNeeded = int(nominees)
         await ctx.send("A new election has begun! Cast votes via DM.")
+
+@bot.command(name = 'rules',
+    description = 'Print the rules for a given gamemode.')
+async def rules(ctx, mode: str):
+    with open('./modes/' + mode.lower()  + '.txt', 'r') as file:
+        modeRules = [l.strip() for l in file.readlines()]
+    
+    await ctx.send('```' + mode +  ' Rules:\n' + '\n'.join(modeRules) + '```')
 
 @bot.event
 async def on_command(ctx):
@@ -299,7 +315,8 @@ async def on_command_error(ctx, error):
             "Chaos is your friend, it seems. I'm just assuming you're doing this on purpose.",
             "*facepalm*",
             "I think I know what you mean:",
-            "I'm too tried for this shit."
+            "I'm too tried for this shit.",
+            "Derek!"
         ]
         
         await ctx.send(getRandomFromList(textOptions) + "\nYou were trying to run " + findClosestCommand(ctx.message.content[1:].lower()) + " right?")

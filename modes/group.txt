@@ -1,0 +1,13 @@
+In a public channel, roll the !group command to receive a random group trait.
+The next round, this trait applies to the entire team.
+
+In a DM to the bot, run the !item <trait> command in order to get a compatible banned item.
+
+If your trait has a "completion" condition: you may !bonus if you complete it successfully.
+If not, you must !punish yourself.
+
+If the team completes 3/4 objectives - congratulations! Everyone must vote for an MVP to !bonus.
+In the event of a tie, play ring toss - the highest score wins.
+
+If the team does NOT guess the ghost correctly, everyone most vote for an LVP to !punish.
+In the event of a tie, play ring toss - the lowest score loses.

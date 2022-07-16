@@ -1,0 +1,7 @@
+This mode uses the standard rule set: use "!rules standard" in order to refresh your memory.
+
+Additionally, everyone must attempt to hide their trait as best as possible.
+At the end of the round, all players guess the other 3 players traits.
+
+If any 1 player gets 2 traits correctly, they receive a !bonus.
+If any player has their trait guessed correctly, they receive a !punish.

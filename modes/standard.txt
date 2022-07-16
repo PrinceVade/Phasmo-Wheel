@@ -1,0 +1,11 @@
+Everyone runs the !spin command (DM the bot) and receive a random trait and banned item.
+The next round, you must adhere to the trait and not bring or use your banned item.
+
+If your trait has a "completion" condition: you may !bonus if you complete it successfully.
+If not, you must !punish yourself.
+
+If the team completes 3/4 objectives - congratulations! Everyone must vote for an MVP to !bonus.
+In the event of a tie, play ring toss - the highest score wins.
+
+If the team does NOT guess the ghost correctly, everyone most vote for an LVP to !punish.
+In the event of a tie, play ring toss - the lowest score loses.

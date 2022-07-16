@@ -261,7 +261,7 @@ async def election(ctx, nominees = '4'):
 
             await ctx.send('Election results:' + formattedResults + '```')
         else:
-            logging.info("Additional election command run. Value of: (len(votes) >= activeElectionVotesNeeded) or (nominees.lower() == 'cancel')\n`(len(" + str(votes) + ") >= " + str(activeElectionVotesNeeded) + ") or (" + nominees + ".lower() == 'cancel'`"
+            logging.info("Additional election command run. Value of: (len(votes) >= activeElectionVotesNeeded) or (nominees.lower() == 'cancel')\n`(len(" + str(votes) + ") >= " + str(activeElectionVotesNeeded) + ") or (" + nominees + ".lower() == 'cancel'`")
             await ctx.send("There's already an active election in progress. Currently " + str(len(votes)) + "/" + str(activeElectionVotesNeeded) + " votes cast.")
     else:
         logging.info('Election begun. ' + nominees + ' needed to complete.')

@@ -288,7 +288,7 @@ async def rules(ctx, mode: str):
     
         await ctx.send('```' + mode +  ' Rules:\n' + '\n'.join(modeRules) + '```')
     except:
-        await ctx.send('I could not find a mode called ' + mode + '. Check the spelling with "!list modes". Or contact your admin.'
+        await ctx.send('I could not find a mode called ' + mode + '. Check the spelling with "!list modes". Or contact your admin.')
 
 @bot.event
 async def on_command(ctx):

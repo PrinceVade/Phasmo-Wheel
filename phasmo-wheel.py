@@ -65,7 +65,7 @@ def getItem(itemList, conflictList):
 
 def checkAddTraits(traitDict):
     # do nothing for now, still braintstorm wtf to do here
-    return false
+    return False
 
 def checkAddItems(itemList, traitDict, alreadyBanned = []):
     bannedItems = []

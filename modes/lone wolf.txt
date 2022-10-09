@@ -1,6 +1,6 @@
 This mode uses the standard rule set: use "!rules standard" in order to refresh your memory.
 
 Additionally, all players are on their own. They must work and identify the ghost at their own peril without the help from others.
-Whatever help the players give each other is up to an idividual's descretion.
+Whatever help the players give each other is up to an individual's discretion.
 
 Any who guess the ghost correctly receive a !bonus and a !punish for the opposite.

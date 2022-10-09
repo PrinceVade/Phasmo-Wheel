@@ -1,0 +1,4 @@
+This player's goal is to make sure the ghost room has everything anyone ever could ever need. Ever. Bring all the equipment from the van into the ghost room. Ignore the banned item(s) when moving equipment into the ghost room. (Don't use them, though!)
+Compelte Condition: All equipment from the van is in the ghost room upon leaving.
+
+Conflict Items:

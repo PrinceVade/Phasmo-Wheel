@@ -1,4 +1,4 @@
-At any point in the round, this player must find a hiding spot in the house and concel themselves there. Without instructing the others to find them, they must be found by a living player without the help of the dead.
+After the ghost is identified, announce your trait and the rest of the team can't look at the map in the van. Once you're hidden, all the other players must seek you. They must be found by a living player without the help of the dead.
 Complete Condition: A player dies while searching for you - or finds you during a hunt.
 Extra: If all players die searching for you, take home an extra !bonus
 

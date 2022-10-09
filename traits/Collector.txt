@@ -1,0 +1,6 @@
+This player find and place the cursed object in the van. The curse object must remain unused; if the object is the summoning circle, there must be a 3-star photo of it.
+Complete Condition: The cursed object is never used and in the van at the end of the mission.
+
+Conflict Items:
+Cursed Object
+Photo Camera

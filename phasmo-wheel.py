@@ -222,7 +222,7 @@ async def gamemode(ctx):
     description = 'Sets up a new game and prints a map and difficulty.',
     aliases = ['fresh', 'start', 'new'])
 async def newgame(ctx):
-    await ctx.send('```Ghost detected at ' + getRandomFromList(listdir('./maps')) + '\nDanger levels reading at ' + getRandomFromList(listdir('./difficulties')) + '\nGamemode adjusted to ' + getRandomFromList(listdir('./modes')) + '```')
+    await ctx.send('```Ghost detected at ' + getRandomFromList(listdir('./maps')) + '\nDanger levels reading at ' + getRandomFromList(listdir('./difficulties')) + '```') #\nGamemode adjusted to ' + getRandomFromList(listdir('./modes')) + '```')
 
 @bot.command(name = 'vote',
     description = 'Cast a vote in the currently running election.')

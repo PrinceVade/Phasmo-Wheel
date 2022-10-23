@@ -20,7 +20,7 @@ from datetime import datetime as dt
 
 # The token and description of the bot.
 DEBUG = False
-TOKEN = ''
+TOKEN = 'OTkwMzAxODQ5OTQ3MDc4Njg2.G7CheH.tyECHNqEtfaSKMiZy9vr-2iy4whtbtpaR6AetA'
 description = '''I am the Phasmo-Bot! Designed to make Phasmophobia a more terrible and amazing experience!
 It is optimal to use this bot once your party has either achieved level 30 or is considered profient at hunting ghosts.
 You can play otherwise, but there will be quite a lot of !punish going on.
@@ -28,6 +28,7 @@ You can play otherwise, but there will be quite a lot of !punish going on.
 To use, you should have a channel dedicated to Phasmophobia where everyone playing can see messages.
 There, use the !newgame command in order to print a random map, gamemode, and difficulty.
 If you are unfamiliar with the gamemode presented, use the "!rules <gamemode>" commands to print the rules.
+If you find a bug, use the "!bug" command to get the link to submit issues.
 Follow the instructions and have fun. Good luck!'''
 
 # quick log configuration
@@ -159,7 +160,7 @@ async def trait(ctx):
 
 @bot.command(name = 'bonus',
     description = 'Spin the bonus wheel!',
-    aliases = ['good'])
+    aliases = ['good', 'reward'])
 async def bonus(ctx):
     bonusDict = getBonus('bonuses')
     await ctx.send('```' + bonusDict['name'] + ':\n' + bonusDict['text'] + '```')
@@ -247,7 +248,8 @@ async def vote(ctx, ballot: str):
         await ctx.send('There is no active election, please run !election before voting.')
 
 @bot.command(name = 'election',
-    description = 'Begins the election process.')
+    description = 'Begins the election process.',
+    aliases = ['mvp', 'lvp'])
 async def election(ctx, nominees = '4', fraud = False):
     global activeElection
     global votes
@@ -278,6 +280,11 @@ async def election(ctx, nominees = '4', fraud = False):
         activeElectionFraud = fraud
         activeElectionVotesNeeded = int(nominees)
         await ctx.send("A new election has begun! Cast votes via DM.")
+
+@bot.command(name = 'bug',
+    description = 'Prints the link to submit bugs.')
+async def bug(ctx):
+    await ctx.send('`https://github.com/PrinceVade/Phasmo-Wheel/issues`')
 
 @bot.command(name = 'rules',
     description = 'Print the rules for a given gamemode.')

@@ -20,7 +20,7 @@ from datetime import datetime as dt
 
 # The token and description of the bot.
 DEBUG = False
-TOKEN = 'OTkwMzAxODQ5OTQ3MDc4Njg2.G7CheH.tyECHNqEtfaSKMiZy9vr-2iy4whtbtpaR6AetA'
+TOKEN = ''
 description = '''I am the Phasmo-Bot! Designed to make Phasmophobia a more terrible and amazing experience!
 It is optimal to use this bot once your party has either achieved level 30 or is considered profient at hunting ghosts.
 You can play otherwise, but there will be quite a lot of !punish going on.

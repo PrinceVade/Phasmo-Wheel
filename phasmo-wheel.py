@@ -14,13 +14,16 @@ from discord.ext.commands import CommandNotFound
 # Python libraries
 import logging
 import random
-from os import listdir
+from os import listdir, getenv
+from dotenv import load_dotenv
 from Levenshtein import distance
 from datetime import datetime as dt
 
+load_dotenv()
+
 # The token and description of the bot.
 DEBUG = False
-TOKEN = ''
+TOKEN = getenv('BOT_TOKEN')
 description = '''I am the Phasmo-Bot! Designed to make Phasmophobia a more terrible and amazing experience!
 It is optimal to use this bot once your party has either achieved level 30 or is considered profient at hunting ghosts.
 You can play otherwise, but there will be quite a lot of !punish going on.
@@ -31,8 +34,8 @@ If you are unfamiliar with the gamemode presented, use the "!rules <gamemode>" c
 Follow the instructions and have fun. Good luck!'''
 
 # quick log configuration
-logLevel = logging.DEBUG if DEBUG else logging.INFO
-logging.basicConfig(filename='./logs/' + dt.now().strftime('%m%d%Y-%H%M') + '.log', encoding='utf-8', level=logLevel)
+#logLevel = logging.DEBUG if DEBUG else logging.INFO
+#logging.basicConfig(filename='./logs/' + dt.now().strftime('%m%d%Y-%H%M') + '.log', encoding='utf-8', level=logLevel)
     
 # a global variable to help track election status
 activeElection = False
@@ -41,7 +44,7 @@ activeElectionVotesNeeded = 0
 votes = {}
 
 # defining the bot's command prefix as well as adding the description.
-bot = commands.Bot(command_prefix='!', description=description, case_insensitive=True)
+bot = commands.Bot(intents=discord.Intents.all(), command_prefix='!', description=description, case_insensitive=True)
 
 def getTrait(traitList):
     conflictItems = []
@@ -90,7 +93,7 @@ def getRandomFromList(ListOfChoices):
     return chosen.replace('.txt', '')
 
 def findClosestCommand(given):
-    commands = ['spin', 'trait', 'item', 'bonus', 'punish', 'rules', 'map', 'diff', 'howhard', 'monika', 'newgame', 'start', 'fresh']
+    commands = ['spin', 'trait', 'item', 'bonus', 'good', 'punish', 'rules', 'list', 'map', 'diff', 'howhard', 'monika', 'newgame', 'start', 'fresh', 'election', 'vote', 'bug', 'mvp', 'lvp']
     closest = commands[0]
     closestDistance = distance(given, closest)
     
@@ -247,7 +250,8 @@ async def vote(ctx, ballot: str):
         await ctx.send('There is no active election, please run !election before voting.')
 
 @bot.command(name = 'election',
-    description = 'Begins the election process.')
+    description = 'Begins the election process.',
+    aliases = ['mvp', 'lvp'])
 async def election(ctx, nominees = '4', fraud = False):
     global activeElection
     global votes
@@ -278,6 +282,11 @@ async def election(ctx, nominees = '4', fraud = False):
         activeElectionFraud = fraud
         activeElectionVotesNeeded = int(nominees)
         await ctx.send("A new election has begun! Cast votes via DM.")
+
+@bot.command(name = 'bug',
+    description = 'Prints the link to submit bugs.')
+async def bug(ctx):
+    await ctx.send('`https://github.com/PrinceVade/Phasmo-Wheel/issues`')
 
 @bot.command(name = 'rules',
     description = 'Print the rules for a given gamemode.')

@@ -1,4 +1,5 @@
-This player just can't get enough of the song that comes from the Cursed Music Box. They must find the box and play the song and hum long to it for AT LEAST THREE SECONDS! If it breaks before the three seconds are up, they fail the trait.
+This player just can't get enough of the song that comes from the Cursed Music Box. They must find the box and play the song and hum along to it.
 Complete Condition: Hum along to the music box for 3 seconds or the entire duration and survive the subsequent hunt.
+If there is no music box prevent the cursed item from being used (Out of spite, of course).
 
 Conflict Items:

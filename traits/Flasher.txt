@@ -2,4 +2,3 @@ This player's flashlight is malfunctioning. They must keep their flashlight off 
 
 Conflict Items:
 Flashlight
-Strong Flashlight

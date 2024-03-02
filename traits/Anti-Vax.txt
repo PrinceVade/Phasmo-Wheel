@@ -1,4 +1,4 @@
-This player doesn't believe in medicine. They cannot take sanity pills during the whole mission.
+This player doesn't believe in medicine. They cannot take Sanity medication during the whole mission.
 
 Conflict Items:
-Sanity Pills
+Sanity Medication

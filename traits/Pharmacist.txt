@@ -1,6 +1,6 @@
-This player went to college and is gonna use their degree, damn it! They're the only person who is allowed to use Sanity pills or check the Sanity board.
-They may give other players sanity pills (bypass banned items) at will but may not take any themselves. All other players are banned from viewing the Sanity board in the van even after the person with this trait dies (but they can totally steal pills).
-Complete Condition: No other player's sanity reaches 0 or 100 before all Sanity pills are consumed.
+This player went to college and is gonna use their degree, damn it! They're the only person who is allowed to use Sanity medication or check the Sanity board.
+They may give other players Sanity medication (bypass banned items) at will but may not take any themselves. All other players are banned from viewing the Sanity board in the van even after the person with this trait dies (but they can totally steal pills).
+Complete Condition: No other player's sanity reaches 0 or 100 before all Sanity medication are consumed.
 
 Conflict Items:
-Sanity Pills
+Sanity medication

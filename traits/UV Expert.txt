@@ -1,7 +1,6 @@
-This player can only use the UV Flashlight for light. Nothing else. 
+This player can only use the UV Light for light. Nothing else. 
 
 Conflict Items:
 UV Light
-Candle
+Firelight
 Flashlight
-Strong Flashlight

@@ -2,5 +2,4 @@ This player enjoys the vast darkness. Any flashlights or UV light, cannot be use
 
 Conflict Items:
 Flashlight
-Strong Flashlight
 UV Light

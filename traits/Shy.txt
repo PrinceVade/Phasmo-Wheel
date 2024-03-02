@@ -2,4 +2,4 @@ This player does not want to talk to the ghost. They are not allowed to talk to 
 
 Conflict Items:
 Spirit Box
-Parabolic Mic
+Parabolic Microphone

@@ -1,6 +1,8 @@
-This player is addicted to pills and LOVES it. They must attempt to consume all of the sanity pills without getting caught. This mission MUST have 4 sanity pills.
+This player is addicted to pills and LOVES it. They must attempt to consume all of the Sanity medication without getting caught. This mission MUST have 4 Sanity medication.
 There is a 1 minute cooldown between consuming pills.
-Complete Condition: Consume all 4 sanity pills without anyone realizing before they're all gone.
+Complete Condition: Consume all 4 Sanity medication without anyone realizing before they're all gone.
+
+Shared Modifier: Be the last player to take a Sanity pill. Cooldown still applies.
 
 Conflict Items:
-Sanity Pills
+Sanity medication

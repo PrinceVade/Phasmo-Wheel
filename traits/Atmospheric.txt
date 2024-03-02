@@ -1,7 +1,6 @@
-This player can ONLY use the candle or lighter for light. NO FLASHLIGHTS!
+This player can ONLY use firelights and igniters for lights. NO FLASHLIGHTS!
 
 Conflict Items:
-Candle
-Lighter
+Firelight
+Igniter
 Flashlight
-Strong Flashlight

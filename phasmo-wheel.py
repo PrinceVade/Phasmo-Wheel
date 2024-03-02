@@ -25,8 +25,6 @@ load_dotenv()
 DEBUG = False
 TOKEN = getenv('BOT_TOKEN')
 description = '''I am the Phasmo-Bot! Designed to make Phasmophobia a more terrible and amazing experience!
-It is optimal to use this bot once your party has either achieved level 30 or is considered profient at hunting ghosts.
-You can play otherwise, but there will be quite a lot of !punish going on.
 
 To use, you should have a channel dedicated to Phasmophobia where everyone playing can see messages.
 There, use the !newgame command in order to print a random map, gamemode, and difficulty.
@@ -64,7 +62,15 @@ def getTrait(traitList):
 
 def getItem(itemList, conflictList):
     items = [i for i in itemList if i not in conflictList]
-    return random.choice(items)
+
+    tier = random.randint(1, 3)
+    item = random.choice(items)
+
+    output = item
+    if item != 'Cursed Object':
+        output = 'Tier ' + str(tier) + ' ' + item
+
+    return output
 
 def checkAddTraits(traitDict):
     # do nothing for now, still braintstorm wtf to do here
@@ -92,6 +98,19 @@ def getRandomFromList(ListOfChoices):
     chosen = random.choice(ListOfChoices)
     return chosen.replace('.txt', '')
 
+def saveBonusToUser(userID, bonus):
+    
+    with open('./users/' + userID + '.txt', 'w+') as file:
+        allLines = file.readlines()
+        linesDict = {l.split(':')[0]: l.split(':')[1] for l in allLines}
+
+        if bonus in linesDict.keys():
+            linesDict[bonus] += 1
+        else:
+            linesDict[bonus] = 1
+
+        file.write('\n'.join([k + ':' + str(v) for k, v in linesDict.items()]))
+
 def findClosestCommand(given):
     commands = ['spin', 'trait', 'item', 'bonus', 'good', 'punish', 'rules', 'list', 'map', 'diff', 'howhard', 'monika', 'newgame', 'start', 'fresh', 'election', 'vote', 'bug', 'mvp', 'lvp']
     closest = commands[0]
@@ -117,6 +136,10 @@ async def printItems(itemNames, ctx):
         output = itemNames[0]
 
     await ctx.send('```Banned Item:\n' + output + '```')
+
+async def printBonus(bonusDict, ctx):
+    await ctx.send('```' + bonusDict['name'] + ':\n' + bonusDict['text'] + '```')
+    #await ctx.send(ctx.message.author.mention, file=discord.File(open('./images/' + bonusDict['name'] + '.png', 'rb')))
 
 @bot.command(name = 'spin',
     description = 'Spin the Phasmo-Wheel')
@@ -165,14 +188,14 @@ async def trait(ctx):
     aliases = ['good'])
 async def bonus(ctx):
     bonusDict = getBonus('bonuses')
-    await ctx.send('```' + bonusDict['name'] + ':\n' + bonusDict['text'] + '```')
+    await printBonus(bonusDict, ctx)
     
 @bot.command(name = 'punish',
     description = 'Spin the punishment wheel',
     aliases = ['punishment', 'bad'])
 async def punish(ctx):
     punishDict = getBonus('punishments')
-    await ctx.send('```' + punishDict['name'] + ':\n' + punishDict['text'] + '```')
+    await printBonus(punishDict, ctx)
 
 @bot.command(name = 'give',
     description = 'debug command. Prints exact trait(+random item(s)) provided')

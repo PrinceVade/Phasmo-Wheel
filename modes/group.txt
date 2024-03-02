@@ -1,13 +1,8 @@
 In a public channel, roll the !group command to receive a random group trait.
-The next round, this trait applies to the entire team.
+With the rolled trait, everyone must be randomly assigned or the team must deliberate for the optimal assignments.
 
-In a DM to the bot, run the !item <trait> command in order to get a compatible banned item.
+The size of the team is the upper limit of the list, throw away any outside that.
+(e.g. 3 player team only uses the first 3 in the list. CANNOT choose #1, #2, and #4.)
 
-If your trait has a "completion" condition: you may !bonus if you complete it successfully.
-If not, you must !punish yourself.
-
-If the team completes 3/4 objectives - congratulations! Everyone must vote for an MVP to !bonus.
-In the event of a tie, play ring toss - the highest score wins.
-
-If the team does NOT guess the ghost correctly, everyone most vote for an LVP to !punish.
-In the event of a tie, play ring toss - the lowest score loses.
+Identifying the ghost is only the start. ALL secondary objectives must be completed.
+The bonus or punishment applies to the entire team. Work together!
